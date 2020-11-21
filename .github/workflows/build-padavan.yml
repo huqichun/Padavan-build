@@ -41,11 +41,11 @@ jobs:
         cd /opt/hostedtoolcache/go
         rm -rf /opt/hostedtoolcache/go/1.14.12
         mv 1.15.5 1.14.12
-        sed -i 's/192.168.2/192.168.31/' /opt/rt-n56u/trunk/user/shared/defaults.h
     - name: Build Firmware
       env:
         TNAME: R2100
       run: |
+        sed -i 's/192.168.2/192.168.31/' /opt/rt-n56u/trunk/user/shared/defaults.h
         cd /opt/rt-n56u/trunk
         if [ ! -f configs/templates/$TNAME.config ] ; then
         echo "configs/templates/$TNAME.config not found "
