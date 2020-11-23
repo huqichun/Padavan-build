@@ -46,15 +46,32 @@ jobs:
        sed -i 's/192.168.2/192.168.31/g' /opt/rt-n56u/trunk/user/shared/defaults.h
     - name: Set AdGuardHome
       run: |
-       sed -i 's/1.1.1.1/223.6.6.6/' /opt/rt-n56u/trunk/user/adguardhome/adguardhome.sh
-       sed -i 's/AdGuard Simplified Domain Names filter/My AdFilters/' /opt/rt-n56u/trunk/user/adguardhome/adguardhome.sh
-       sed -i "s/'https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt'/'https://gitee.com/halflife/list/raw/master/ad.txt'/" /opt/rt-n56u/trunk/user/adguardhome/adguardhome.sh
-       sed -i 's/AdAway/乘风/' /opt/rt-n56u/trunk/user/adguardhome/adguardhome.sh
-       sed -i "s/'https://adaway.org/hosts.txt'/'https://gitee.com/xinggsf/Adblock-Rule/raw/master/rule.txt'/" /opt/rt-n56u/trunk/user/adguardhome/adguardhome.sh
-       sed -i "s/'hpHosts - Ad and Tracking servers only'/'anti-AD'/" /opt/rt-n56u/trunk/user/adguardhome/adguardhome.sh
-       sed -i "s/'https://hosts-file.net/ad_servers.txt'/'https://cdn.jsdelivr.net/gh/privacy-protection-tools/anti-AD@master/anti-ad-easylist.txt'/" /opt/rt-n56u/trunk/user/adguardhome/adguardhome.sh
-       sed -i "s/'MalwareDomainList.com Hosts List'/'1024网站'/" /opt/rt-n56u/trunk/user/adguardhome/adguardhome.sh
-       sed -i "s/'https://www.malwaredomainlist.com/hostslist/hosts.txt'/'https://raw.githubusercontent.com/Goooler/1024_hosts/master/hosts'/" /opt/rt-n56u/trunk/user/adguardhome/adguardhome.sh
+       AD=/opt/rt-n56u/trunk/user/adguardhome/adguardhome.sh
+       A1=AdGuard Simplified Domain Names filter
+       A2=My AdFilters
+       A11=https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt
+       A12=https://gitee.com/halflife/list/raw/master/ad.txt
+       B1=https://adaway.org/hosts.txt
+       B2=https://gitee.com/xinggsf/Adblock-Rule/raw/master/rule.txt
+       C1=hpHosts - Ad and Tracking servers only'/'anti-AD
+       C2=anti-AD
+       C11=https://hosts-file.net/ad_servers.txt
+       C12=https://cdn.jsdelivr.net/gh/privacy-protection-tools/anti-AD@master/anti-ad-easylist.txt
+       D1=MalwareDomainList.com Hosts List
+       D2=1024网站类
+       D11=https://www.malwaredomainlist.com/hostslist/hosts.txt
+       D12=https://raw.githubusercontent.com/Goooler/1024_hosts/master/hosts
+       
+       sed -i 's/1.1.1.1/223.6.6.6/' $(AD)       
+       sed -i 's/$(A1)/$(A2)/' $(AD)
+       sed -i 's/$(A11)/$(A12)/' $(AD)       
+       sed -i 's/AdAway/乘风/' $(AD)       
+       sed -i 's/$(B1)/$(B2)/' $(AD)     
+       sed -i 's/$(C1)/$(C2)/' $(AD)
+       sed -i 's/$(C11)/$(C12)/' $(AD)
+       sed -i 's/$(D1)/$(D2)/' $(AD)
+       sed -i 's/$(D11)/$(D12)/' $(AD)
+
     - name: Build Firmware
       env:
         TNAME: R2100
