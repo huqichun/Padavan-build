@@ -61,6 +61,8 @@ jobs:
        D2="1024网站类"
        D11="https://www.malwaredomainlist.com/hostslist/hosts.txt"
        D12="https://raw.githubusercontent.com/Goooler/1024_hosts/master/hosts"
+       DADG1="https://cdn.jsdelivr.net/gh/chongshengB/rt-n56u/trunk/user/adguardhome/AdGuardHome"
+       DADG2="https://opt.cn2qq.com/opt-file/AdGuardHome"
        
        sed -i 's/1.1.1.1/223.6.6.6/' $AD
        sed -i 's/$A1/$A2/' $AD
@@ -71,7 +73,7 @@ jobs:
        sed -i 's/$C11/$C12/' $AD
        sed -i 's/$D1/$D2/' $AD
        sed -i 's/$D11/$D12/' $AD
-
+       sed -i 's/$DADG1/$DADG2/' $AD
     - name: Build Firmware
       env:
         TNAME: R2100
