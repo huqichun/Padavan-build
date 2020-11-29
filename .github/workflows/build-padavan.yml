@@ -32,7 +32,7 @@ jobs:
         pkg-config zlib1g-dev libgmp3-dev libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget
     - name: Clone source code
       run: |
-        git clone --depth=1 https://github.com/chongshengB/rt-n56u.git /opt/rt-n56u
+        git clone --depth=1 https://github.com/huqichun/rt-n56u.git /opt/rt-n56u
         cd /opt/rt-n56u/toolchain-mipsel
         sh dl_toolchain.sh
         mkdir -p /opt/images/
@@ -44,36 +44,6 @@ jobs:
     - name: Set LAN IP
       run: |
        sed -i 's/192.168.2/192.168.31/g' /opt/rt-n56u/trunk/user/shared/defaults.h
-    - name: Set AdGuardHome
-      run: |
-       AD="/opt/rt-n56u/trunk/user/adguardhome/adguardhome.sh"
-       A1="AdGuard Simplified Domain Names filter"
-       A2="My AdFilters"
-       A11="https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt"
-       A12="https://gitee.com/halflife/list/raw/master/ad.txt"
-       B1="https://adaway.org/hosts.txt"
-       B2="https://gitee.com/xinggsf/Adblock-Rule/raw/master/rule.txt"
-       C1="hpHosts - Ad and Tracking servers only"
-       C2="anti-AD"
-       C11="https://hosts-file.net/ad_servers.txt"
-       C12="https://cdn.jsdelivr.net/gh/privacy-protection-tools/anti-AD@master/anti-ad-easylist.txt"
-       D1="MalwareDomainList.com Hosts List"
-       D2="1024网站类"
-       D11="https://www.malwaredomainlist.com/hostslist/hosts.txt"
-       D12="https://raw.githubusercontent.com/Goooler/1024_hosts/master/hosts"
-       DADG1="https://cdn.jsdelivr.net/gh/chongshengB/rt-n56u/trunk/user/adguardhome/AdGuardHome"
-       DADG2="https://opt.cn2qq.com/opt-file/AdGuardHome"
-       
-       sed -i 's/1.1.1.1/223.6.6.6/' $AD
-       sed -i 's/$A1/$A2/' $AD
-       sed -i 's/$A11/$A12/' $AD
-       sed -i 's/AdAway/乘风/' $AD       
-       sed -i 's/$B1/$B2/' $AD
-       sed -i 's/$C1/$C2/' $AD
-       sed -i 's/$C11/$C12/' $AD
-       sed -i 's/$D1/$D2/' $AD
-       sed -i 's/$D11/$D12/' $AD
-       sed -i 's/$DADG1/$DADG2/' $AD
     - name: Build Firmware
       env:
         TNAME: R2100
@@ -110,7 +80,7 @@ jobs:
         echo "CONFIG_FIRMWARE_INCLUDE_SSOBFS=n" >> .config # simple-obfs混淆插件
         echo "CONFIG_FIRMWARE_INCLUDE_SSSERVER=n" >> .config #SS server
         echo "CONFIG_FIRMWARE_INCLUDE_DNSFORWARDER=n" >> .config #DNSFORWARDER
-        echo "CONFIG_FIRMWARE_INCLUDE_ADBYBY=n" >> .config #adbyby plus+
+        echo "CONFIG_FIRMWARE_INCLUDE_ADBYBY=y" >> .config #adbyby plus+
         echo "CONFIG_FIRMWARE_INCLUDE_FRPC=n" >> .config #内网穿透FRPC
         echo "CONFIG_FIRMWARE_INCLUDE_FRPS=n" >> .config #内网穿透FRPS
         echo "CONFIG_FIRMWARE_INCLUDE_TUNSAFE=n" >> .config #TUNSAFE
@@ -119,7 +89,7 @@ jobs:
         echo "CONFIG_FIRMWARE_INCLUDE_SMARTDNSBIN=n" >> .config #smartdns二进制文件
         echo "CONFIG_FIRMWARE_INCLUDE_V2RAY=y" >> .config #集成v2ray执行文件（3.8M左右)，如果不集成，会从网上下载下来执行，不影响正常使用
         echo "CONFIG_FIRMWARE_INCLUDE_TROJAN=y" >> .config #集成trojan执行文件(1.1M左右)，如果不集成，会从网上下载下来执行，不影响正常使用
-        echo "CONFIG_FIRMWARE_INCLUDE_KOOLPROXY=n" >> .config #KP广告过滤
+        echo "CONFIG_FIRMWARE_INCLUDE_KOOLPROXY=y" >> .config #KP广告过滤
         echo "CONFIG_FIRMWARE_INCLUDE_CADDY=n" >> .config #在线文件管理服务
         echo "CONFIG_FIRMWARE_INCLUDE_CADDYBIN=n" >> .config #集成caddu执行文件，此文件有13M,请注意固件大小。如果不集成，会从网上下载下来执行，不影响正常使用
         echo "CONFIG_FIRMWARE_INCLUDE_ADGUARDHOME=y" >> .config
