@@ -39,8 +39,10 @@ jobs:
     - name: Set Golang
       run: |
         cd /opt/hostedtoolcache/go
+        wget --no-check-certificate https://golang.org/dl/go1.15.6.linux-amd64.tar.gz
+        tar zxvf ./go1.15.6.linux-amd64.tar.gz
         rm -rf /opt/hostedtoolcache/go/1.14.12
-        mv 1.15.6 1.14.12
+        mv go 1.14.12
     - name: Set LAN IP
       run: |
        sed -i 's/192.168.2/192.168.31/g' /opt/rt-n56u/trunk/user/shared/defaults.h
